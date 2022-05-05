@@ -1,0 +1,1 @@
+<h3> Applications are not accepted until <?= date('F j, Y',strtotime($qry_dates['apply_start'])) ?> </h3>

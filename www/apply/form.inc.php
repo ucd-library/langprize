@@ -26,6 +26,7 @@
       <div class="formlabel"><label for="author_1_personal">Secondary Email</label></div>
       <div class="formdata"><?=form_text('author_1_personal',50)?></div>
     </div>
+    <? /*
   	<div class="formrow">
       <div class="formlabel"><label for="author_1_id">Student ID Number</label></div>
       <div class="formdata"><?=form_text('author_1_id',20)?></div>
@@ -33,6 +34,41 @@
     <div class="formrow">
       <div class="formlabel"><label for="author_1_phone">Telephone Number</label></div>
       <div class="formdata"><?=form_text('author_1_phone',20)?></div>
+    </div>
+    */ ?>
+    <div class="formrow">
+      <div class="formlabel"><label for="author_1_pronouns">What are your pronouns? <em>(optional)</em></label></div>
+      <div class="formdata"><?=form_text('author_1_pronouns',20)?></div>
+    </div>
+    <div class="formrow">
+      <div class="formlabel"><label for="author_1_major">What is your major?</label></div>
+      <div class="formdata"><?=form_text('author_1_major',20)?></div>
+    </div>
+    <div class="formrow">
+      <div class="formlabel"><label for="author_1_yeargraduate">What year do you expect to graduate? <em>(Select from dropdown)</em></label></div>
+      <div class="formdata">
+        <input type="number" min="2022" max="2099" step="1" value="2022" name="author_1_yeargraduate" id="author_1_yeargraduate" title="author_1_yeargraduate"/>
+      </div>
+    </div>
+    <div class="formrow">
+    	<div class="formlabel"><label for="author_1_learned">Please take a moment to let us know how you learned about the Lang Prize. Your response will help us improve our outreach to students in future years.</label></div>
+      <div class="formdata">
+        <select name="author_1_learned">
+          <option value="">(Please Choose)</option>
+          <?= form_option('author_1_learned','Professor or course instructor')?><br />
+          <?= form_option('author_1_learned','Academic advising')?><br />
+          <?= form_option('author_1_learned','Honors Program')?>
+          <?= form_option('author_1_learned','Social media')?>
+          <?= form_option('author_1_learned','Online ad in The California Aggie')?>
+          <?= form_option('author_1_learned','Library sign')?>
+          <?= form_option('author_1_learned','Undergraduate Research Center')?>
+          <?= form_option('author_1_learned','Other')?>
+        </select>
+      </div>
+    </div>
+    <div class="formrow">
+      <div class="formlabel"><label for="author_1_learned_other">If your answer to the previous question was 'other,' please specify here:</label></div>
+      <div class="formdata"><?=form_text('author_1_learned_other',20)?></div>
     </div>
     <div class="spacer"></div>
 		<input type="checkbox" name="more-authors" id="more-authors-yes"/> 
@@ -53,9 +89,44 @@
           <div class="formlabel"><label for="author_<?=$i?>_email">Campus Email</label></div>
           <div class="formdata"><?=form_text('author_'.$i.'_email',50)?></div>
         </div>
-        <div class="formrow">
+        <? /* <div class="formrow">
           <div class="formlabel"><label for="author_<?=$i?>_id">Student ID Number</label></div>
           <div class="formdata"><?=form_text('author_'.$i.'_id',20)?></div>
+        </div> */ ?>
+        <div class="formrow">
+          <div class="formlabel"><label for="author_<?=$i?>_pronouns">What are your pronouns?</label></div>
+          <div class="formdata"><?=form_text('author_'.$i.'_pronouns',20)?></div>
+        </div>
+        <div class="formrow">
+          <div class="formlabel"><label for="author_<?=$i?>_major">What is your major?</label></div>
+          <div class="formdata"><?=form_text('author_'.$i.'_major',20)?></div>
+        </div>
+        <div class="formrow">
+          <div class="formlabel"><label for="author_<?=$i?>_yeargraduate">What year do you expect to graduate?</label></div>
+          <div class="formdata">
+            <input type="number" min="2022" max="2099" step="1" value="2022" name="author_<?=$i?>_yeargraduate" id="author_<?=$i?>_yeargraduate" title="author_<?=$i?>_yeargraduate"/>        
+          </div>
+        </div>
+        <div class="formrow">
+          <div class="formlabel"><label for="author_<?=$i?>_learned">Please take a moment to let us know how you learned about the Lang Prize. Your response will help us improve our outreach to students in future years.</label></div>
+          <div class="formdata">
+            <select name="author_<?=$i?>_learned">
+              <option value="">(Please Choose)</option>
+              <?= form_option('author_'.$i.'_learned','Professor or course instructor')?><br />
+              <?= form_option('author_'.$i.'_learned','Academic advising')?><br />
+              <?= form_option('author_'.$i.'_learned','First-Year Undergraduate')?>
+              <?= form_option('author_'.$i.'_learned','Social media')?>
+              <?= form_option('author_'.$i.'_learned','Online ad in The California Aggie')?>
+              <?= form_option('author_'.$i.'_learned','Poster in the ARC COVID testing kiosk')?>
+              <?= form_option('author_'.$i.'_learned','Library poster')?>
+              <?= form_option('author_'.$i.'_learned','Undergraduate Research Center')?>
+              <?= form_option('author_'.$i.'_learned','Other')?>
+            </select>
+          </div>
+        </div>
+        <div class="formrow">
+          <div class="formlabel"><label for="author_<?=$i?>_learned_other">If your answer to the previous question was 'other,' please specify here:</label></div>
+          <div class="formdata"><?=form_text('author_'.$i.'_learned_other',20)?></div>
         </div>
       <?php } // end repeating authors ?>
       <!-- end extra authors -->
@@ -118,7 +189,7 @@
     	architectural model, CD, or DVD, please upload documents or photos that describe the 
 		project in sufficient detail to allow its merits to be judged. If the project is on 
 		the Web, please include the URL. Include the list of co-authors if more than six.
-		Please email <a href="mailto:langprize@ucdavis.edu">langprize@ucdavis.edu</a> if you have any questions.
+		Please email <a href="mailto:<?=$_ENV['LANGPRIZE_EMAIL']?>"><?=$_ENV['LANGPRIZE_EMAIL']?></a> if you have any questions.
     <div class=""><input type="file" name="file_project" /> [doc, docx, pdf, zip only - max 20MB]</div>
     <hr />
     <h4><label for="file_essay">Reflective Essay</label></h4>

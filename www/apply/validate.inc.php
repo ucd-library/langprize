@@ -23,15 +23,19 @@ elseif (! preg_match($personalpattern,$FORM['author_1_personal']))
 elseif (preg_match($campuspattern,$FORM['author_1_personal']) and false)
 	{ $errors['a1p']='Secondary Email must NOT be an @ucdavis.edu address'; }
 // student id
-if (! strlen($FORM['author_1_id']))
-	{ $errors['a1i']='Please enter your Student ID number'; }
-elseif (! preg_match('/^[0-9]*$/',$FORM['author_1_id']))
-	{ $errors['a1i']='Please enter a valid Student ID number (digits only)'; }
-	
-	
+// if (! strlen($FORM['author_1_id']))
+// 	{ $errors['a1i']='Please enter your Student ID number'; }
+// elseif (! preg_match('/^[0-9]*$/',$FORM['author_1_id']))
+// 	{ $errors['a1i']='Please enter a valid Student ID number (digits only)'; }
+// Major
+if (! strlen($FORM['author_1_major']))
+	{ $errors['a1f']='Please enter your Major'; }
+// How Learned about LangPrize
+if (! isset($FORM['author_1_learned']) or ! strlen($FORM['author_1_learned']))
+	{ $errors['cs']='Please specify how you learned about the Lang Prize.'; }
 // phone number	
-if (! strlen($FORM['author_1_phone']))
-	{ $errors['a1t']='Please enter your Phone Number'; }
+// if (! strlen($FORM['author_1_phone']))
+// 	{ $errors['a1t']='Please enter your Phone Number'; }
 
 // additional authors
 for ($i=2;$i<=6;$i++)
@@ -46,8 +50,8 @@ for ($i=2;$i<=6;$i++)
 					{ $errors['a'.$i.'l'] = 'Please enter the Last Name for author #'.$i; }
 				if (! strlen($FORM['author_'.$i.'_email']))
 					{ $errors['a'.$i.'e'] = 'Please enter the Email Address for author #'.$i; }
-				if (! strlen($FORM['author_'.$i.'_id']))
-					{ $errors['a'.$i.'i'] = 'Please enter the Student ID Number for author #'.$i; }
+				// if (! strlen($FORM['author_'.$i.'_id']))
+				// 	{ $errors['a'.$i.'i'] = 'Please enter the Student ID Number for author #'.$i; }
 			}
 	}
 
